@@ -48,8 +48,36 @@ class ManagerEventController: UICollectionViewController{//UITableViewController
         super.viewWillAppear(animated)
       //  tableView.reloadData()
         collectionView?.reloadData()
-       // animateTable()
-        //animateTable()
+        if Utilitys.isLoadDataAgain{
+            let day: String = Utilitys.ngay;
+            let event: Event = Utilitys.congviec
+            if day == "Chu Nhật" {
+                eventLines[0].events.append(event);
+            }
+            else if day == "Thứ 2" {
+                eventLines[1].events.append(event)
+            }
+            else if day == "Thứ 3" {
+                eventLines[2].events.append(event)
+            }
+            else if day == "Thứ 4" {
+                eventLines[3].events.append(event)
+            }
+            else if day == "Thứ 5" {
+                eventLines[4].events.append(event)
+            }
+            else if day == "Thứ 6" {
+                eventLines[5].events.append(event)
+            }
+            else  {
+                eventLines[6].events.append(event)
+            }
+            // eventInDays = EventInDay.eventInDays()
+            collectionView?.reloadData()
+            Utilitys.isLoadDataAgain = false;
+        } else {
+            collectionView?.reloadData()
+        }
     }
     
     override func didReceiveMemoryWarning() {
